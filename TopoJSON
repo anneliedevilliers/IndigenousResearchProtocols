@@ -1,0 +1,17 @@
+var topoLayer = new L.TopoJSON(null, {
+  filter: function(feature, layer) {
+  return getNN(feature.properties.ISO2, "check");
+  },
+  onEachFeature: function (feature, layer) {
+    var contentCount = getContentItems(feature.properties.ISO2, "count");
+    if (contentCount) {
+      layer.setStyle({
+        'weight': 1,
+        'fillOpacity': .75,
+        'fillColor': "#0077c8",
+        'opacity': .75,
+        'color': "#0077c8"
+      });
+    }
+  }
+});
